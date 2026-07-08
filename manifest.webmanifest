@@ -1,0 +1,10 @@
+{
+  "name": "Local Subscription Radar",
+  "short_name": "Sub Radar",
+  "description": "Paste receipt or subscription text locally to spot recurring charges and renewal risks.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3ead8",
+  "theme_color": "#18231d",
+  "icons": []
+}
