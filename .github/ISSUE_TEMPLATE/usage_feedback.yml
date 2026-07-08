@@ -1,0 +1,39 @@
+name: Usage feedback
+description: Share whether the local receipt/subscription radar detected the right things.
+title: "[Usage feedback] "
+labels: ["usage-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for trying the local demo. Please use sample data or redacted text only.
+  - type: dropdown
+    id: input_type
+    attributes:
+      label: What did you try?
+      options:
+        - Streaming bundle sample
+        - Trial + app store sample
+        - Shopping + refund window sample
+        - Redacted personal receipt/subscription text
+    validations:
+      required: true
+  - type: textarea
+    id: correct
+    attributes:
+      label: What did it detect correctly?
+      description: Mention recurring charges, renewal clues, refund windows, or ambiguous lines that looked right.
+    validations:
+      required: true
+  - type: textarea
+    id: missed
+    attributes:
+      label: What did it miss or make confusing?
+      description: Do not include private card numbers, addresses, legal identifiers, or full receipt details.
+    validations:
+      required: true
+  - type: textarea
+    id: next
+    attributes:
+      label: What would make this useful enough to reuse?
+      description: Keep this practical. Examples: better Korean text detection, CSV import, clearer monthly estimate.
