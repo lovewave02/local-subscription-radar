@@ -4,9 +4,21 @@ import { samples } from './samples';
 
 const feedbackUrl =
   'https://github.com/lovewave02/local-subscription-radar/issues/new?template=usage_feedback.yml';
+const releaseUrl = 'https://github.com/lovewave02/local-subscription-radar/releases/tag/v0.1.0';
+const feedbackRequest = `I tried the Local Subscription Radar demo with sample data.
+
+What made sense:
+- 
+
+What felt confusing or missed:
+- 
+
+Any wording that felt too much like financial advice:
+- `;
 
 export default function App() {
   const [input, setInput] = useState(samples[0].text);
+  const [feedbackCopied, setFeedbackCopied] = useState(false);
   const analysis = useMemo(() => analyzeReceiptText(input), [input]);
 
   return (
@@ -30,6 +42,36 @@ export default function App() {
         <Step number="01" title="Paste or load sample" />
         <Step number="02" title="Review detected charges" />
         <Step number="03" title="Export or leave feedback" />
+      </section>
+
+      <section className="feedback-brief" aria-labelledby="feedback-title">
+        <div>
+          <p className="eyebrow">First-use feedback</p>
+          <h2 id="feedback-title">Try a sample, then leave one public note.</h2>
+          <p>
+            The v0.1 release is ready for sample-data feedback. Please do not paste
+            private receipts; use a sample button or redacted text and note what the
+            detector got right, missed, or made confusing.
+          </p>
+        </div>
+        <div className="feedback-actions">
+          <a href={releaseUrl} target="_blank" rel="noreferrer">
+            View v0.1 release
+          </a>
+          <a href={feedbackUrl} target="_blank" rel="noreferrer">
+            Open feedback issue
+          </a>
+          <button
+            type="button"
+            className="ghost-button"
+            onClick={async () => {
+              await copy(feedbackRequest);
+              setFeedbackCopied(true);
+            }}
+          >
+            {feedbackCopied ? 'Copied feedback prompt' : 'Copy feedback prompt'}
+          </button>
+        </div>
       </section>
 
       <section className="workspace">
